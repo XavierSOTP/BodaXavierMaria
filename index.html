@@ -2,186 +2,745 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Invitación de Boda - Xavier & Mariangeles</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boda Xavier y Mariangeles</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      scroll-behavior: smooth;
-      background: #fffdf8;
-      color: #333;
+    * { box-sizing: border-box; }
+
+    body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: #f0f8f4; /* Verde sutil */
+}
+
+    section {
+      width: 100%;
+      text-align: center;
+      padding: 2rem;
     }
-    section, header, footer {
-      scroll-margin-top: 80px;
-    }
-    header {
-      background: url('https://th.bing.com/th/id/OIP.y9M-Z7NcE5Ey0xj-xkfnoQHaHa?rs=1&pid=ImgDetMain') center/cover no-repeat;
-      height: 100vh;
+
+    .page1 {
+      background-color: #f7f7f7;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      color: white;
-      padding: 0 20px;
     }
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      margin: 0.5em 0;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+
+    .subtitle {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: #444;
+      margin-bottom: 0.5rem;
     }
-    header p {
-      font-size: 1.7rem;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: normal;
+      color: #1a3c2f;
+      line-height: 1.2;
+      margin-bottom: 2rem;
     }
-    section {
-      padding: 5em 2em;
-      max-width: 900px;
-      margin: 0 auto;
-      border-radius: 24px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.05);
-      margin-bottom: 2em;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-      background: #ffffffee;
+
+    .envelope-container {
+      position: relative;
+      width: 200px;
+      height: 130px;
+      margin: 1rem auto;
+      cursor: pointer;
+      perspective: 1000px;
     }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      margin-bottom: 1em;
-      text-align: center;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1em;
-    }
-    .gallery img {
+
+    .envelope {
       width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      height: 100%;
+      background-color: #264d37;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
-    .gallery img:hover {
-      transform: scale(1.05);
+
+    .envelope:before,
+    .envelope:after {
+      content: '';
+      position: absolute;
+      background-color: #1a3c2f;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 1;
     }
-    .info {
-      font-size: 1.1em;
-      line-height: 1.8em;
+
+    .envelope:before {
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
     }
-    .calendar {
+
+    .envelope:after {
+      clip-path: polygon(0 100%, 100% 100%, 50% 50%);
+    }
+
+    .seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: gold;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #333;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .click-text {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .reserved-box {
+      margin-top: 2rem;
+      border: 2px double #333;
+      display: inline-block;
+      padding: 1rem 2rem;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .reserved-box p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .highlighted-number {
+      display: inline-block;
+      border-bottom: 1px solid #333;
+      margin-top: 0.5rem;
+    }
+
+    .page2 {
+      background: url('https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/1.jpg') no-repeat center center/cover;
+      color: white;
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page2 .text-background {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+
+    .page2 h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page2 h2 {
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .page3 {
+      background-color: #fff;
+      color: #333;
+      display: none;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+.page3 .text-block {
+  max-width: 1400px;       /* más ancho */
+  margin: 0 auto;
+  font-size: 1.5rem;
+  line-height: 1.6;         /* menos espacio entre líneas */
+  padding: 4rem 4rem;       /* más espacio lateral */
+  text-align: left;         /* o usa justify si prefieres alineación profesional */
+}
+
+
+
+    .page3 p {
+      margin-bottom: 1.5rem;
+    }
+
+    .page4 {
+      background: linear-gradient(to bottom, #264d37 0%, #f5f5f5 45%);
+      color: #fff;
+      padding: 3rem 1rem;
       text-align: center;
-      font-size: 1.4em;
-      background: #ffe8d6;
-      padding: 1em;
-      border-radius: 12px;
-      margin-top: 1em;
+    }
+.page5 {
+  width: 100%;
+  min-height: 600px; /* cambia de height a min-height */
+  background: url('https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/3.jpg') no-repeat center center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid #e0e0e0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+
+.page6 {
+  background-color: #f8f8f8;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.location-box {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #1a3c2f;
+}
+
+.location-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.page6 h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.page6 p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.map-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #264d37;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.map-button:hover {
+  background-color: #1a3c2f;
+}
+
+.event-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.event-icon {
+  font-size: 1.3rem;
+}
+
+.event-label {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.event-time-detail {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.event-hour {
+  font-weight: 500;
+}
+
+.page7 {
+  background-color: #f4f4f4;
+  padding: 4rem 0;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  width: 100%;
+  border-top: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+
+.card {
+  position: relative;
+  background: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /* Efecto de borde interior como cuadrado */
+  box-shadow: inset 0 0 0 2px #b4c2b4;
+  border-radius: 12px;
+  margin: 0 1px; /* línea sutil entre tarjetas */
+}
+
+
+
+
+
+
+.page9 {
+  background-color: #f0f8f4;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.confirmation-card {
+  max-width: 700px; /* antes 500px */
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Georgia', serif;
+  color: #1a3c2f;
+  background: white;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 2px #c5d6c5;
+}
+
+
+.confirmation-card .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.confirmation-card h3 {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.whatsapp-button {
+  display: inline-block;
+  background-color: #264d37;
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.whatsapp-button:hover {
+  background-color: #1a3c2f;
+}
+
+.carousel-card {
+  box-shadow: inset 0 0 0 2px #c5d6c5;
+  border-radius: 12px;
+}
+.page3, .page6, .page7, .page8, .page9 {
+  background-color: #f0f8f4 !important;
+}
+
+#page2, #page3, #page4, #page5, #page6, #page7, #page8, #page9 {
+  display: none;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+
+    .countdown-container {
+      margin-bottom: 2rem;
+    }
+
+    .countdown-title {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
     }
-    .formulario input, .formulario textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    .formulario button {
-      padding: 12px 20px;
-      background-color: #ce9178;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .formulario button:hover {
-      background-color: #b07d65;
-    }
-    footer {
-      text-align: center;
-      background-color: #f3eee7;
-      padding: 40px 20px;
-      font-size: 1.1em;
-    }
-  </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1 });
 
-      document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
-      });
-    });
-  </script>
+    .countdown div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .countdown small {
+      font-size: 0.7rem;
+      margin-top: 0.2rem;
+      color: #ccc;
+    }
+
+    .calendar-section {
+      background-color: #f5f5f5;
+      padding: 2rem 1rem;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+      color: Black;
+    }
+
+    .calendar-section h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    .calendar-section p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .calendar th, .calendar td {
+      border-bottom: 1px solid #ccc;
+      padding: 0.4rem;
+      text-align: center;
+      color: #333;
+    }
+
+    .heart {
+      font-size: 1.2rem;
+      display: inline-block;
+      transform: translateY(-2px);
+      color: #a38c6d;
+    }
+
+    @media (max-width: 600px) {
+      .page2 h1 { font-size: 2rem; }
+      .page3 .text-block { padding: 1rem; font-size: 0.95rem; }
+    }
+
+section:not(.page1) {
+  margin-top: 1rem;
+  border: 2px solid #c5d6c5; /* verde más claro y suave */
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.page8 {
+  padding: 2rem 1rem;
+  background-color: #f0f8f4;
+}
+
+.photo-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+.photo-card {
+  flex: 1 1 calc(33.333% - 1rem);
+  aspect-ratio: 1 / 1; /* cuadrado perfecto */
+  max-width: 100%;
+  min-width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px #c5d6c5;
+  background: white;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .photo-card {
+    flex: 1 1 100%;
+    height: 500px; /* altura menor en móviles */
+  }
+}
+
+
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page2 h1 {
+  font-size: 3rem; /* antes era 2.5rem */
+  margin-bottom: 1rem;
+}
+
+.page2 h2 {
+  font-size: 2rem; /* antes era 1.4rem */
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+  </style>
 </head>
 <body>
 
-<header>
-  <h1>Xavier & Mariangeles</h1>
-  <p>¡Nos casamos! 21 de Junio · Lugar: Nuestra Casa</p>
-</header>
+  <!-- Página 1 - Sobre -->
+  <section class="page1" id="page1">
+    <h2 class="subtitle">NUESTRA BODA</h2>
+    <h1 class="title">XAVIER &&<br>MARIANGELES</h1>
 
-<section>
-  <h2>Nuestra Historia</h2>
-  <p class="info">Después de un viaje lleno de amor, aventuras y aprendizaje, hemos decidido dar el siguiente paso. Queremos compartir este momento tan especial con ustedes.</p>
-</section>
+    <div class="click-text">Clic aquí para abrir</div>
 
-<section>
-  <h2>Galería</h2>
-  <div class="gallery">
-    <img src="https://source.unsplash.com/400x300/?couple,love" alt="Foto 1">
-    <img src="https://source.unsplash.com/400x300/?wedding,romantic" alt="Foto 2">
-    <img src="https://source.unsplash.com/400x300/?nature,love" alt="Foto 3">
+    <div class="envelope-container" onclick="openInvitation()">
+      <div class="envelope">
+        <div class="seal">💍</div>
+      </div>
+    </div>
+
+    <div class="reserved-box">
+      <p>Hemos reservado<br><span class="highlighted-number"></span> lugar(es) en tu honor</p>
+    </div>
+  </section>
+
+  <!-- Página 2 - Intro -->
+  <section class="page2  fade-in" id="page2">
+    <div class="text-background">
+      <h1>¡Nos casamos!</h1>
+      <h2>Xavier && Mariangeles</h2>
+      
+    </div>
+  </section>
+
+  <!-- Página 3 - Historia -->
+<section class="page3  fade-in" id="page3">
+  <div class="text-block">
+    <p>
+      Recordar cómo iniciamos es simplemente maravilloso. Pasábamos saliendo a comer Tip Top y jugando LoL hasta la madrugada. Éramos grandes amigos, y de repente, sin darnos cuenta, surgió algo más. No nos arrepentimos de haber dado ese primer paso, porque nos trajo hasta aquí. Hoy queremos dar otro paso importante en nuestra relación… <em>¡Exacto, vamos a tener otro perro!</em> (jajaja no, mentira 😄)
+    </p>
+    <p>
+      <strong>¡Nos casamos!</strong> Y queremos que seas parte de este día tan especial, así como has sido parte de nuestra laaaarga historia de amor. 💕
+    </p>
   </div>
 </section>
 
-<section>
-  <h2>Detalles del Evento</h2>
-  <div class="info">
-    <p><strong>Fecha:</strong></p>
-    <div class="calendar">Viernes 21 de Junio</div>
-    <p><strong>Hora:</strong> Por decidir</p>
-    <p><strong>Lugar:</strong> Nuestra casa (la dirección se compartirá personalmente)</p>
-    <p><strong>Comida:</strong> Tradicional nicaragüense 🇳🇮</p>
-    <p><strong>Vestimenta:</strong> Hombres: cotona | Mujeres: Huipil Nicaragüense</p>
+
+  <!-- Página 4 - Contador y Calendario -->
+  <section class="page4  fade-in" id="page4">
+    <div class="countdown-container">
+      <p class="countdown-title">FALTAN</p>
+      <div class="countdown">
+        <div><span id="days">--</span><small>Días</small></div>
+        <div><span id="hours">--</span><small>Horas</small></div>
+        <div><span id="minutes">--</span><small>Min</small></div>
+        <div><span id="seconds">--</span><small>Seg</small></div>
+      </div>
+    </div>
+
+    <div class="calendar-section">
+      <h3>EL GRAN DÍA</h3>
+      <p>JULIO</p>
+      <table class="calendar">
+        <thead>
+          <tr><th>DO</th><th>LU</th><th>MA</th><th>MI</th><th>JU</th><th>VI</th><th>SA</th></tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+          <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+          <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+          <tr><td><span class="heart">💚</span></td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+          <tr><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Página 5 - Imagen divisor -->
+<section class="page5  fade-in" id="page5"></section>
+<section class="page6 fade-in" id="page6">
+  <div class="confirmation-card">
+    <div class="icon">📍</div>
+    <h3>LUGAR DE LA CEREMONIA</h3>
+    <p>KM 18. Carretera Ticuantepe, entrada las perlas,<br>200 metros al Sur,<br>Condominio los Coreanos.</p>
+
+    <div style="margin: 2rem 0;">
+      <a class="whatsapp-button" href="https://www.google.com/maps/search/12.019547,+-86.211240?entry=tts&g_ep=EgoyMDI1MDUyOC4wIPu8ASoASAFQAw%3D%3D&skid=8e62b391-48dc-419e-84ac-c3506cd8f232" target="_blank">
+        Ver en Google Maps
+      </a>
+    </div>
+
+    <div class="event-time" style="margin-top: 2rem;">
+      <span class="event-icon">💒</span>
+      <span class="event-label">Ceremonia</span>
+      <span class="event-time-detail">—</span>
+      <span class="event-hour">11:00 AM</span>
+    </div>
   </div>
 </section>
 
-<section>
-  <h2>Regalos</h2>
-  <p class="info">Tu presencia es nuestro mayor regalo, pero si deseas traernos algo, será recibido con mucho cariño. Algo útil, simbólico o hecho por ti ❤️</p>
+
+<section class="page5  fade-in" id="page5"></section>
+
+<section class="page7  fade-in" id="page7">
+  <div class="info-cards">
+    <div class="card">
+      <div class="icon">🕴️</div>
+      <h3>CÓDIGO DE VESTIMENTA</h3>
+      <p><strong>Formal</strong></p>
+      <p>Les pedimos amablemente evitar el uso de blanco, beige o tonos pasteles similares. Para los caballeros, favor no utilizar trajes en beige o colores similares.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💚</div>
+      <h3>RESERVADO PARA ADULTOS</h3>
+      <p><span style="color: #1a3c2f; font-weight: bold;">No se permitirá el ingreso de menores de edad.</span> Agradecemos su comprensión.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💌</div>
+      <h3>LLUVIA DE SOBRES</h3>
+      <p>Su presencia es el mejor regalo que podríamos recibir, pero si desean obsequiarnos algo, agradeceremos su aporte en forma monetaria para ayudarnos a construir nuestros sueños.</p>
+    </div>
+  </div>
 </section>
 
-<section>
-  <h2>Confirmación de Asistencia</h2>
-  <form class="formulario" action="https://formsubmit.co/tu-correo@gmail.com" method="POST">
-    <input type="text" name="nombre" placeholder="Tu nombre" required>
-    <input type="email" name="correo" placeholder="Tu correo" required>
-    <textarea name="mensaje" placeholder="¿Nos quieres decir algo?" rows="4"></textarea>
-    <button type="submit">Confirmar Asistencia</button>
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://tuusuario.github.io/boda-invitacion/gracias.html">
-  </form>
+<section class="page8 fade-in" id="page8">
+  <div class="photo-gallery">
+    <div class="photo-card">
+      <img src="https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/3.jpg" />
+    </div>
+    <div class="photo-card">
+      <img src="https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/2.jpg" />
+    </div>
+    <div class="photo-card">
+      <img src="https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/4.jpg" />
+    </div>
+  </div>
 </section>
 
-<footer>
-  <p>Con cariño, Xavier & Mariangeles · 2025</p>
-</footer>
+<section class="page9 fade-in" id="page9">
+  <div class="confirmation-card">
+    <div class="icon">📱</div>
+    <h3>CONFIRMAR ASISTENCIA</h3>
+    <p>Por favor, confirmar antes del 10 de Junio de 2025</p>
+
+    <div style="margin: 2rem 0;">
+      <p style="font-weight: bold;">Confirmar a la novia</p>
+      <a class="whatsapp-button" href="https://wa.me/50581002890?text=Hola,%20quiero%20confirmar%20mi%20asistencia%20a%20la%20boda%20con%20la%20novia" target="_blank">
+        Confirmar aquí
+      </a>
+    </div>
+
+    <div style="margin: 2rem 0;">
+      <p style="font-weight: bold;">Confirmar al novio</p>
+      <a class="whatsapp-button" href="https://wa.me/50589506959?text=Hola,%20quiero%20confirmar%20mi%20asistencia%20a%20la%20boda%20con%20el%20novio" target="_blank">
+        Confirmar aquí
+      </a>
+    </div>
+
+    <p style="margin-top: 3rem;">¡Esperamos verlos y celebrar juntos!<br><strong>Con mucho cariño,</strong></p>
+  </div>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function openInvitation() {
+      document.getElementById('page1').style.display = 'none';
+
+      const pagesToShow = ['page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8', 'page9'];
+
+      pagesToShow.forEach((id, index) => {
+        const el = document.getElementById(id);
+        setTimeout(() => {
+          el.style.display = id === 'page2' ? 'flex' : 'block';
+          el.style.visibility = 'visible';
+          el.style.height = 'auto';
+          el.style.padding = '2rem';
+          el.style.margin = '1rem 0';
+        }, 400 * index);
+      });
+
+      setTimeout(() => {
+        document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+
+    window.openInvitation = openInvitation;
+
+    function updateCountdown() {
+      const targetDate = new Date("2025-06-21T00:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) return;
+
+      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = d;
+      document.getElementById("hours").textContent = h.toString().padStart(2, '0');
+      document.getElementById("minutes").textContent = m.toString().padStart(2, '0');
+      document.getElementById("seconds").textContent = s.toString().padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // Animaciones fade-in al hacer scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("appear");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  });
+</script>
+
 
 </body>
 </html>
