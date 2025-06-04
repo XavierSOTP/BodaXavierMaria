@@ -141,7 +141,11 @@
     }
 @media (max-width: 768px) {
   .page2 {
-    clip-path: inset(0 50% 0 0); /* shows only left 50% */
+    background-position: left center; /* shows only the left side */
+    background-size: auto 100vh;      /* keeps height fixed, width adjusts */
+    background-repeat: no-repeat;
+    justify-content: flex-start;      /* align content to the left */
+    padding-left: 10px;               /* optional spacing for content */
   }
 }
 
@@ -196,7 +200,7 @@
 .page5 {
   width: 100%;
   min-height: 600px; /* cambia de height a min-height */
-  background: url('https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/3.jpg') no-repeat center center;
+  background: url('https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/Larga%202.jpg') no-repeat center center;
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -524,6 +528,108 @@ section:not(.page1) {
   margin-bottom: 1.5rem;
 }
 
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .reserved-box {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .confirmation-card {
+    padding: 1.2rem;
+  }
+
+  .confirmation-card h3 {
+    font-size: 1rem;
+  }
+
+  .calendar-section {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .calendar th, .calendar td {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .event-time {
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.95rem;
+  }
+
+  .info-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    padding: 2rem 1rem;
+  }
+
+  .photo-card {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .countdown {
+    gap: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .countdown small {
+    font-size: 0.6rem;
+  }
+
+  .page6 p,
+  .page6 h2 {
+    font-size: 0.95rem;
+  }
+
+  .map-button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .whatsapp-button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .text-block {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .calendar-section h3 {
+    font-size: 1.1rem;
+  }
+
+  .calendar-section p {
+    font-size: 0.85rem;
+  }
+
+  .envelope-container {
+    width: 150px;
+    height: 100px;
+  }
+
+  .seal {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -650,7 +756,7 @@ section:not(.page1) {
 <section class="page8 fade-in" id="page8">
   <div class="photo-gallery">
     <div class="photo-card">
-      <img src="https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/3.jpg" />
+      <img src="https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/asdasdasd.jpg" />
     </div>
     <div class="photo-card">
       <img src="https://raw.githubusercontent.com/XavierSOTP/BodaXavierMaria/main/2.jpg" />
