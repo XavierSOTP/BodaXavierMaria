@@ -149,6 +149,16 @@
   }
 }
 
+
+@media (max-width: 768px) {
+  .page5 {
+    background-position: right center; /* solo muestra lado derecho */
+    background-size: auto 100vh;       /* alto completo, ancho ajustado */
+    background-repeat: no-repeat;
+  }
+}
+
+
     .page2 .text-background {
       background: rgba(0, 0, 0, 0.5);
       padding: 2rem;
@@ -798,11 +808,21 @@ section:not(.page1) {
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const reservedSpan = document.querySelector(".highlighted-number");
+    
+    if (id) {
+      reservedSpan.textContent = `${id}`;
+      document.querySelector(".click-text").textContent = `Has recibido una invitación`;
+    } else {
+      reservedSpan.textContent = "1";
+    }
+
     function openInvitation() {
       document.getElementById('page1').style.display = 'none';
 
       const pagesToShow = ['page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8', 'page9'];
-
       pagesToShow.forEach((id, index) => {
         const el = document.getElementById(id);
         setTimeout(() => {
@@ -811,12 +831,12 @@ section:not(.page1) {
           el.style.height = 'auto';
           el.style.padding = '2rem';
           el.style.margin = '1rem 0';
-        }, 400 * index);
+        }, 150 * index); // ANTES: 400, AHORA: 150 (más rápido)
       });
 
       setTimeout(() => {
         document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
-      }, 500);
+      }, 300);
     }
 
     window.openInvitation = openInvitation;
@@ -841,7 +861,7 @@ section:not(.page1) {
 
     setInterval(updateCountdown, 1000);
 
-    // Animaciones fade-in al hacer scroll
+    // Animaciones fade-in
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -853,6 +873,7 @@ section:not(.page1) {
     document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
   });
 </script>
+
 
 
 </body>
